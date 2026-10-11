@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Real Gamer</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #0b1020;
+      color: white;
+    }
+    header {
+      padding: 22px;
+      text-align: center;
+      background: #151d32;
+      border-bottom: 2px solid #22c55e;
+    }
+    header h1 { color: #22c55e; margin: 0; }
+    nav {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 18px;
+      padding: 15px;
+      background: #111827;
+    }
+    nav a { color: white; text-decoration: none; }
+    .hero {
+      text-align: center;
+      padding: 55px 18px;
+      background: linear-gradient(135deg, #142b25, #111827);
+    }
+    .hero h2 { font-size: 32px; }
+    .hero p { color: #cbd5e1; line-height: 1.6; }
+    .btn {
+      display: inline-block;
+      background: #22c55e;
+      color: #07130b;
+      padding: 13px 22px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      margin-top: 12px;
+    }
+    main { max-width: 900px; margin: auto; padding: 20px; }
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+    }
+    .card {
+      background: #151d32;
+      border: 1px solid #29354d;
+      border-radius: 12px;
+      padding: 20px;
+    }
+    .card h3 { color: #22c55e; }
+    button, input {
+      padding: 12px;
+      border-radius: 7px;
+      border: 0;
+      margin: 5px 0;
+    }
+    button { background: #22c55e; font-weight: bold; }
+    input { width: 100%; background: #e2e8f0; }
+    #players { line-height: 1.8; }
+    footer {
+      text-align: center;
+      padding: 25px;
+      color: #94a3b8;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>⚽ THE REAL GAMER</h1>
+    <p>Play hard. Compete. Become a champion.</p>
+  </header>
+
+  <nav>
+    <a href="#tournaments">Tournaments</a>
+    <a href="#leaderboard">Leaderboard</a>
+    <a href="#profile">Player Profile</a>
+  </nav>
+
+  <section class="hero">
+    <h2>Your Game. Your Glory.</h2>
+    <p>Join the football gaming community, register your name,
+       and get ready to compete.</p>
+    <a class="btn" href="#profile">Join the Game</a>
+  </section>
+
+  <main>
+    <section id="tournaments">
+      <h2>🏆 Tournaments</h2>
+      <div class="cards">
+        <div class="card">
+          <h3>Football Championship</h3>
+          <p>Compete against other players for the top spot.</p>
+          <p>Status: Registration coming soon</p>
+        </div>
+        <div class="card">
+          <h3>Multiplayer Battles</h3>
+          <p>Challenge other gamers and prove your skills.</p>
+          <p>Status: Coming soon</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="leaderboard">
+      <h2>🥇 Leaderboard</h2>
+      <div class="card">
+        <p>Player rankings will appear here as results are recorded.</p>
+        <ol id="players">
+          <li>No players yet. Be the first to join!</li>
+        </ol>
+      </div>
+    </section>
+
+    <section id="profile">
+      <h2>👤 Player Registration</h2>
+      <div class="card">
+        <form id="joinForm">
+          <label for="playerName">Your gamer name</label>
+          <input id="playerName" maxlength="30"
+                 placeholder="Enter your gamer name" required>
+          <button type="submit">Join The Real Gamer</button>
+        </form>
+        <p id="message"></p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2026 The Real Gamer. Play fair. Be a champion.</p>
+  </footer>
+
+  <script>
+    const form = document.getElementById('joinForm');
+    form.addEventListener('submit', function(event) {
+      event.preventDefault();
+      const name = document.getElementById('playerName').value.trim();
+      if (!name) return;
+      const list = document.getElementById('players');
+      if (list.children.length === 1 &&
+          list.children[0].textContent.includes('No players yet')) {
+        list.innerHTML = '';
+      }
+      const item = document.createElement('li');
+      item.textContent = name;
+      list.appendChild(item);
+      document.getElementById('message').textContent =
+        'Welcome, ' + name + '! Your demo registration is complete.';
+      form.reset();
+    });
+  </script>
+</body>
+  </html>
